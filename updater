@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# This is just a simple updator script
+
+sudo apt-get update && sudo apt-get upgrade

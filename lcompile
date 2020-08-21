@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# Simple script to compile a view latex documents
+
+# Takes latex file as input 
+
+LATEX=${1?Error: Please choose a latex file}
+externalprogram "$LATEX"
+
+PDF=/usr/bin/pdflatex $LATEX
+
+echo "Compiling..."
+
+sleep 2
+
+ $PDF.pdf

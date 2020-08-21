@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+COMMENT=${1?Error: No Comment}
+
+git add .
+git commit -m "$COMMENT"
+
+# source: https://stackoverflow.com/questions/3231804/in-bash-how-to-add-are-you-sure-y-n-to-any-command-or-alias 
+
+read -r -p "Push to origin? (Y/n)" response
+case "$response" in 
+	[yY][eE][sS]|[yY])
+		git push origin master
+		cowsay "Pushed to origin"
+		;;
+	*)
+		cowsay "Alright dude, not pushed to origin"
+		;;
+esac
+
+exit
