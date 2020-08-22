@@ -2,10 +2,22 @@
 
 # Simple script to compile a view latex documents
 
-# Takes latex file as input 
-
+# Takes latex file as input
 LATEX=${1?Error: Please choose a latex file}
 externalprogram "$LATEX"
+
+# source: https://stackoverflow.com/questions/965053/extract-filename-and-extension-in-bash 
+
+if [-d "latex_pdf"]
+then 
+	echo "Directory Exists "
+
+FILENAME=$(basename -- "$LATEX")
+
+#TODO: Scan the current directory for a latex_pdf dir, if none exists then make one
+# and move the .pdf with the associated filename to that directory
+# add an option "-o", so the user doesn't open the file automatically, otherwise the pdf is opened using evince
+#EXTENSION="${FILENAME##*.}"
 
 PDF=/usr/bin/pdflatex $LATEX
 
@@ -13,4 +25,4 @@ echo "Compiling..."
 
 sleep 2
 
- $PDF.pdf
+$PDF.pdf
