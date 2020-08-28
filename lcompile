@@ -21,7 +21,7 @@ find_pdf()
 	then
 		mv $1 latex_pdf
 	fi 
-
+}
 # Takes latex file as input
 LATEX=${1?Error: Please choose a latex file}
 externalprogram "$LATEX"
@@ -34,12 +34,13 @@ FILENAME="${LATEX%.*}"
 
 # TODO: Scan the current directory for a latex_pdf dir, if none exists then make one
 # and move the .pdf with the associated filename to that directory
-# add an option "-o", so the user doesn't open the file automatically, otherwise the pdf is opened using evince
 
 EXTENSION="${LATEX##*.}"
 
-PDF=/usr/bin/pdflatex $LATEX
+/usr/bin/pdflatex $LATEX
 
 echo "Compiling..."
 
-find_pdf $LATEX
+find_pdf $FILENAME
+
+exit
