@@ -4,9 +4,9 @@
 
 # Function compiles first before use
 
-latex_pdf_mkdir{
-
-	if [-d "latex_pdf"]
+latex_pdf_mkdir()
+{
+	if [[-d  "latex_pdf"]]
 	then
 		echo "Directory Exists"
 	else
@@ -14,11 +14,19 @@ latex_pdf_mkdir{
 		mkdir latex_pdf
 	fi
 }
-
+find_pdf()
+{
+	file=$1
+	if [[ -f $1 && "$1{file: -4}==".pdf"}" ]]
+	then
+		mv $1 latex_pdf
+	fi 
 
 # Takes latex file as input
 LATEX=${1?Error: Please choose a latex file}
 externalprogram "$LATEX"
+
+latex_pdf_mkdir
 
 # source: https://stackoverflow.com/questions/965053/extract-filename-and-extension-in-bash 
 
@@ -32,10 +40,6 @@ EXTENSION="${LATEX##*.}"
 
 PDF=/usr/bin/pdflatex $LATEX
 
-latex_pdf_mkdir
-
 echo "Compiling..."
 
-
-
-$PDF.pdf
+find_pdf $LATEX
